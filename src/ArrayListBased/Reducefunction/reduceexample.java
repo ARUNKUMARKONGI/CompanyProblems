@@ -8,7 +8,7 @@ public class reduceexample {
 
         List<Integer> numbers = Arrays.asList(2, 3, 4, 5);
 
-        int sum = numbers.stream().reduce(1, Integer::sum);
+        int sum = numbers.stream().reduce(0, Integer::sum);
         System.out.println("Sum: " + sum);
 
         int prod = numbers.stream().reduce(1,(a,b)->a*b);
@@ -21,6 +21,7 @@ public class reduceexample {
         List<String> words = Arrays.asList("Java", "is", "awesome");
         String joinedString = words.stream().reduce("", (a, b) -> a + " " + b);
         System.out.println("Joined String: " + joinedString);
+
 
 
 

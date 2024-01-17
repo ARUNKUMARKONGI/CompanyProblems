@@ -1,6 +1,9 @@
 package OopsBased;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 class Cricketers {
     private String name;
@@ -53,7 +56,7 @@ class Cricketers {
 
     @Override
     public String toString() {
-        return "Cricketers{" +
+        return "Cricketers {" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", role='" + role + '\'' +
@@ -87,8 +90,59 @@ public class CricketersLambda{
 
         maxRuns.ifPresent(i -> System.out.println("Cricketer with maximum runs: " + i.getName()));
 
+        lst.stream()
+                .flatMapToInt(cricketer -> IntStream.of(cricketer.getRuns()))
+                .forEach(System.out::println);
+
+        int totalRuns = lst.stream()
+                .mapToInt(Cricketers::getRuns)
+                .reduce(0, Integer::sum);
+        System.out.println("Total Runs: "+totalRuns);
+
+         lst.stream()
+                .filter(i -> i.getName().equals("Kohli"))
+                .map(i -> {
+                    i.setRuns(15000);
+                    return i;
+                })
+                .toList();
+
+        System.out.println("after updating runs: "+lst);
 
 
+       /* lst.stream()
+                .filter(i -> i.getName().equals("Kohli"))
+                .forEach(i -> i.setRuns(15000));
+        System.out.println("after updating runs: "+lst);*/
+        //this approach though easy but more time-consuming as it unnecessarily iterates the entire list
 
+        lst.stream()
+                .filter(i -> i.getName().equals("Kohli"))
+                .findFirst()
+                .ifPresent(i -> i.setRuns(18000));
+
+        System.out.println("after updating runs: "+lst);
+
+        c1.setRuns(20000);  //direct update but have to remember each object name
+
+        System.out.println(c1);
+
+        lst = lst.stream()
+                .filter(i -> !i.getName().equals("Rinku"))
+                .toList();
+
+        System.out.println("After removing Rinku: "+lst);
+
+        lst.forEach(i -> i.setAge(i.getAge() + 1));
+
+        lst.stream().forEach(System.out::println);
+
+        List<String> names = lst.stream()
+                .map(Cricketers::getName)
+                .toList();
+
+        names.forEach(System.out::println);
+
+        System.out.println(names);
     }
 }

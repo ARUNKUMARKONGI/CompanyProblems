@@ -2,6 +2,8 @@ package ArrayListBased.StreamMapFilterPredicateBased;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class StreamMethods {
     public static void main(String[] args) {
@@ -39,9 +41,11 @@ public class StreamMethods {
                 System.out.print(s.charAt(2)+" ");
             }
         });
-//        words.stream().flatMap(s->s.length()>2? Stream.of(s.charAt(2)):Stream.empty())
-//                .forEach(ch->System.out.print(ch+" "));
-        //.forEach(System.out::println);
+     /* words.stream().flatMap(s->s.length()>2? Stream.of(s.charAt(2)):Stream.empty())
+                .forEach(ch->System.out.print(ch+" "));
+        //.forEach(System.out::println);*/
+
+
     }
 }
 
