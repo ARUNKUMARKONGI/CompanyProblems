@@ -76,9 +76,11 @@ public class CricketersLambda{
 
         lst.stream().filter(i->i.getRole().equals("batsman")).forEach(System.out::println);
 
-        //lst.stream().filter(i->i.getRole().equals("batsman")&&i.getAge()<=30).forEach(System.out::println);
+        //lst.stream().filter(i->i.getRole().equals("batsman")&&i.getAge()<=30)
+        // .forEach(System.out::println);
 
-        Double avg=lst.stream().filter(i->i.getRole().equals("batsman")).collect(Collectors.averagingInt(Cricketers::getRuns));
+        Double avg=lst.stream().filter(i->i.getRole().equals("batsman"))
+                .collect(Collectors.averagingInt(Cricketers::getRuns));
         System.out.println("average runs of batsman: "+avg);
 
        Double avgRuns=lst.stream().collect(Collectors.averagingInt(Cricketers::getRuns));
@@ -86,6 +88,8 @@ public class CricketersLambda{
         System.out.println("Average runs of all players: "+avgRuns);
 
         Optional<Cricketers> maxRuns = lst.stream().max(Comparator.comparingInt(Cricketers::getRuns));
+       /* Optional<Cricketers> maxRunsPlayer = lst.stream()
+                .max((player1, player2) -> Integer.compare(player1.getRuns(), player2.getRuns()));*/
         System.out.println(maxRuns);
 
         maxRuns.ifPresent(i -> System.out.println("Cricketer with maximum runs: " + i.getName()));
